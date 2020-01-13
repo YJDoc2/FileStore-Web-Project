@@ -11,12 +11,15 @@ eval(
         .replace('nextObject', 'next')}`
 );
 
-const conn = mongoose.createConnection('mongodb://localhost:27017/FileStore', {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-    useUnifiedTopology: true
-});
+const conn = mongoose.createConnection(
+    process.env.MONGO_ATLAS_URI || 'mongodb://localhost:27017/FileStore',
+    {
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        useFindAndModify: false,
+        useUnifiedTopology: true
+    }
+);
 let gfs;
 conn.once('open', () => {
     gfs = Grid(conn.db, mongoose.mongo);
@@ -40,12 +43,10 @@ router.get('/:filename', isPersonalFile, (req, res) => {
 router.delete('/:filename', isPersonalFile, async (req, res) => {
     let isColl = req.params.filename.split('-')[0] === 'coll';
     if (isColl) {
-        return res
-            .status(404)
-            .send({
-                sucess: false,
-                err: 'cannot delete individual file of a collection'
-            });
+        return res.status(404).send({
+            sucess: false,
+            err: 'cannot delete individual file of a collection'
+        });
     }
 
     gfs.findOne({ filename: req.params.filename }, function(err, file) {

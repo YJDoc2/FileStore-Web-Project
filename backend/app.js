@@ -70,6 +70,7 @@ app.listen(EXPRESS_PORT, () => {
     console.log(`Express listening on Port ${EXPRESS_PORT}...`);
 });
 
+//! For tests
 // if (process.env.NODE_ENV === 'test') {
 //     module.exports = app;
 // }

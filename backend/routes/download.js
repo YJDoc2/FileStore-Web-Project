@@ -11,12 +11,15 @@ eval(
         .toString()
         .replace('nextObject', 'next')}`
 );
-const conn = mongoose.createConnection('mongodb://localhost:27017/FileStore', {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-    useUnifiedTopology: true
-});
+const conn = mongoose.createConnection(
+    process.env.MONGO_ATLAS_URI || 'mongodb://localhost:27017/FileStore',
+    {
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        useFindAndModify: false,
+        useUnifiedTopology: true
+    }
+);
 let gfs;
 conn.once('open', () => {
     gfs = Grid(conn.db, mongoose.mongo);
@@ -31,10 +34,9 @@ router.get('/:filename', isPersonalFile, (req, res) => {
                 err: 'No file exists'
             });
         }
-
+        console.log();
         res.setHeader('Content-Type', file.contentType);
         res.setHeader('Content-Length', file.length);
-        res.setHeader('Content-Disposition', 'attachment');
 
         const readstream = gfs.createReadStream(file.filename);
         readstream.pipe(res);

@@ -5,8 +5,6 @@ const crypto = require('crypto');
 
 User = require('../models/User');
 const mongoCfg = require('../config/mongodb');
-const express = require('express');
-
 const checkValidFileType = require('./file_validation');
 
 //* Multer and Storage settings

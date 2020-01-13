@@ -24,11 +24,8 @@ class CollectionPage extends Component {
             totalSize += e.target.files.size;
         }
 
-        if (totalSize > 20000000 - this.context.state.user.usedSpace) {
-            let errStr = `Cannot upload as these new files will exceed your allowed space...\ncurrent used space : ${this
-                .context.state.user.usedSpace /
-                1000000} out of 20MB\nSize of Intended Upload : ${totalSize /
-                1000000}`;
+        if (totalSize > 20000000) {
+            let errStr = `Cannot upload as Maximum allowed space for a single collection is 20MB`;
             return this.setState({ ...this.state, info: errStr });
         }
         this.setState({
@@ -134,6 +131,15 @@ class CollectionPage extends Component {
                 {this.context.state.isLoggedIn ? (
                     <React.Fragment>
                         <Header></Header>
+                        {this.state.info}
+                        <div className='container'>
+                            <Link
+                                to='/'
+                                className='btn btn-primary btn-block mt-2'
+                            >
+                                Home
+                            </Link>
+                        </div>
                         <div className='container mt-5'>
                             <div className='form-group'>
                                 <label>Collection Name : </label>

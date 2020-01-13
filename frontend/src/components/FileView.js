@@ -57,6 +57,12 @@ class FileView extends Component {
                     });
                 })
                 .catch(e => {
+                    if (e.response.data.err) {
+                        this.setState({
+                            ...this.state,
+                            info: e.response.data.err
+                        });
+                    }
                     console.log(e);
                 });
         } else {
@@ -104,6 +110,7 @@ class FileView extends Component {
             display = (
                 <React.Fragment>
                     {this.staticComponents()}
+                    {this.state.info}
                     <div className='container w-100 mt-2 text-center'>
                         {this.state.img}
                         {this.state.text}

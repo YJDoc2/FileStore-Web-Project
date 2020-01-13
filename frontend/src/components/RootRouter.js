@@ -7,6 +7,7 @@ import Axios from 'axios';
 import { Provider } from './Context';
 import CollectionPage from './CollectionPage';
 import CollectionView from './CollectionView';
+import ErrorPage from './404ErrorPage';
 
 class RootRouter extends Component {
     state = {
@@ -84,7 +85,7 @@ class RootRouter extends Component {
                             path='/collections'
                             component={CollectionPage}
                         />
-                        {/* <Route component={Notfound} /> */}
+                        <Route component={ErrorPage} />
                     </Switch>
                 </Router>
             </Provider>
