@@ -67,9 +67,15 @@ class Home extends Component {
                         user may extend the allowed space by using REST clients
                         such as Postman to upload files. This may be stopped
                         using cors. Currently the file size per user is checked
-                        and handled by frontend before upload
+                        and handled by frontend before upload.
                     </li>
                 </ul>
+            </h5>
+            <h5>
+                Check the Github Repository here :{' '}
+                <a href='https://github.com/YJDoc2/FileStore-Web-Project'>
+                    FileStore Github Repository
+                </a>
             </h5>
         </div>
     );

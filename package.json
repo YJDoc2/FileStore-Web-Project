@@ -1,13 +1,14 @@
 {
-  "name": "filestore",
-  "version": "1.0.0",
-  "description": "FileStore is an website created using ReactJs and Node-Express Js that allows to store files using MongoDB",
-  "main": "index.js",
-  "scripts": {
-	"start":"cd ./frontend && npm install --only=dev && npm install && npm run build && cp -rf ./build ../backend && rm -rf ./build && cd ../backend && npm install && npm run start",
-	"dev-frontend":"cd ./frontend && npm run start",
-	"dev-backend":"cd ./backend && npm run dev"
-  },
-  "author": "YJ",
-  "license": "MIT"
+    "name": "filestore",
+    "version": "1.0.0",
+    "description": "FileStore is an website created using ReactJs and Node-Express Js that allows to store files using MongoDB",
+    "main": "index.js",
+    "scripts": {
+        "start": "cd ./backend && npm run start",
+        "build": "cd ./frontend && npm install &&  npm run build && rm -rf ../backend/build && cp -rf ./build ../backend && rm -rf ./build && cd ../backend && npm install ",
+        "dev-frontend": "cd ./frontend && npm run start",
+        "dev-backend": "cd ./backend && npm run dev"
+    },
+    "author": "YJ",
+    "license": "MIT"
 }
